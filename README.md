@@ -52,7 +52,7 @@
 
     Accept : Application/json
 
-    Authorization : "Bearer token"
+    Authorization : "Bearer seller_token"
 
 ## Customer APIs
 
@@ -104,4 +104,40 @@
 
     Accept : Application/json
 
-    Authorization : "Bearer token"
+    Authorization : "Bearer customer_token"
+
+## Category APIs
+
+### Add new category
+
+<b>POST :</b>
+
+    /category
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+    Authorization : "Bearer seller_token"
+
+<b>Parameters :</b>
+
+    name (required)
+
+## Brand APIs
+
+### Add new brand
+
+<b>POST :</b>
+
+    /brand
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+    Authorization : "Bearer seller_token"
+
+<b>Parameters :</b>
+
+    name (required)
