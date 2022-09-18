@@ -161,3 +161,67 @@
 <b>Parameters :</b>
 
     name (required)
+
+## Product APIs
+
+### Add new product
+
+<b>POST :</b>
+
+    /product
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+    Authorization : "Bearer seller_token"
+
+<b>Parameters :</b>
+
+    name (required)
+
+    primary_img (required | [jpeg,jpg,png,webp] | max:10MB)
+
+    price (required)
+
+    category_id (required)
+
+    brand_id (required)
+
+    description (optional)
+
+    discount (optional)
+
+    stock (optional)
+
+    images (optional | array of images | [jpeg,jpg,png,webp] | max:10MB)
+
+    specifications (optional | array)
+
+<b>Body request example :</b>
+
+    {
+        name: "product name",
+
+        primary_img: "image file",
+
+        price: 35,
+
+        category_id: 2,
+
+        brand_id: 1,
+
+        description: "this is text",
+
+        discount: 30,
+
+        stock: 60,
+
+        images: ["image file 1", "image file 2" , "image file 3"],
+
+        specifications: [
+            "Weight" => "194 grams",
+            "ROM" => "4GB",
+            "Display" => "6.1-inch Liquid Retina HD display"
+        ]
+    }

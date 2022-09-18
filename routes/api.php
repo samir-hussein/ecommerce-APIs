@@ -40,4 +40,9 @@ Route::apiResource('/category', CategoryController::class)->except('update');
 Route::apiResource('/brand', BrandController::class)->except('update');
 
 // ------------------------ product routes ------------------------------
-Route::apiResource('/product', ProductController::class);
+Route::apiResource('/product', ProductController::class)->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ]);
+});
