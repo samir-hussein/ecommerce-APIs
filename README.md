@@ -108,6 +108,16 @@
 
 ## Category APIs
 
+### Get all categories
+
+<b>GET :</b>
+
+    /category
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
 ### Add new category
 
 <b>POST :</b>
@@ -125,6 +135,16 @@
     name (required)
 
 ## Brand APIs
+
+### Get all brands
+
+<b>GET :</b>
+
+    /brand
+
+<b>Headers :</b>
+
+    Accept : Application/json
 
 ### Add new brand
 

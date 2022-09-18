@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Validator;
 
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:seller', [
+            'only' => [
+                'store',
+                'destroy'
+            ]
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
