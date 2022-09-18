@@ -6,12 +6,12 @@
 
 POST => /seller/login
 
-Headers :
+<b>Headers :</b>
 
-Accept : Application/json
+    Accept : Application/json
 
-Parameters :
+<b>Parameters :</b>
 
-email (required)
+    email (required)
 
-password (required)
+    password (required)
