@@ -4,7 +4,7 @@
 
 ### Seller login
 
-POST => /seller/login
+    <b>POST</b> => /seller/login
 
 <b>Headers :</b>
 
