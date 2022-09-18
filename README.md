@@ -1,4 +1,6 @@
-## Base URL : https://jumia-samir-hussein.vercel.app/apis
+## Base URL :
+
+    https://jumia-samir-hussein.vercel.app/apis
 
 ## Seller APIs
 
