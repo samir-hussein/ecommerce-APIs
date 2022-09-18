@@ -5,6 +5,10 @@
 ## Contents
 
 -   [Seller APIs](#Seller-APIs)
+-   [Customer APIs](#Customer-APIs)
+-   [Category APIs](#Category-APIs)
+-   [Brand APIs](#Brand-APIs)
+-   [Product APIs](#Product-APIs)
 
 ## **Seller APIs**
 
