@@ -5,11 +5,11 @@
 ## Contents
 
 -   [Company Account APIs](#Company-Account-APIs)
--   [Customer APIs](#Customer-APIs)
+-   [Customer Account APIs](#Customer-Account-APIs)
 
 ## **Company Account APIs**
 
-### Company login
+### Company Account login
 
 <b>POST :</b>
 
@@ -24,7 +24,7 @@
     email (required)
     password (required)
 
-### Company register
+### Company Account register
 
 <b>POST :</b>
 
@@ -40,7 +40,7 @@
     email (required)
     role (required | [admin , customer service , seller service])
 
-### Company verify
+### Company Account verify
 
 <b>POST :</b>
 
@@ -57,7 +57,7 @@
     password (required | min:8)
     password_confirmation (required)
 
-### Company logout
+### Company Account logout
 
 <b>GET :</b>
 
@@ -68,9 +68,9 @@
     Accept : Application/json
     Authorization : "Bearer {company_token}"
 
-## Customer APIs
+## Customer Account APIs
 
-### Customer login
+### Customer Account login
 
 <b>POST :</b>
 
@@ -85,7 +85,7 @@
     email (required)
     password (required)
 
-### Customer register
+### Customer Account register
 
 <b>POST :</b>
 
@@ -103,7 +103,7 @@
     password (required | min:8)
     password_confirmation (required)
 
-### Customer logout
+### Customer Account logout
 
 <b>GET :</b>
 
