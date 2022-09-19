@@ -63,9 +63,11 @@ class ProductController extends Controller
             ], 422);
         }
 
+        $primary_img = ImageHandler::upload_img($request->file('primary_img'), 'product', 'images');
         // upload the primary image and set seller id
         $request->request->add([
-            'primary_image' => ImageHandler::upload_img($request->file('primary_img'), 'product', 'images'),
+            'primary_image' => $primary_img['public_id'],
+            'secure_url' => $primary_img['secure_url'],
             'seller_id' => $request->user()->id
         ]);
 
@@ -97,7 +99,8 @@ class ProductController extends Controller
             foreach ($request->file('images') as $image) {
                 $newName = ImageHandler::upload_img($image, 'product', 'images');
                 $images[$i] = [
-                    'image_name' => $newName,
+                    'image_name' => $newName['public_id'],
+                    'secure_url' => $newName['secure_url'],
                     'product_id' => $product->id
                 ];
                 $i++;
@@ -160,11 +163,13 @@ class ProductController extends Controller
 
         if ($request->hasFile('primary_img')) {
             // delete the old image
-            ImageHandler::delete_img($product->primary_image, 'images');
+            ImageHandler::delete_img($product->primary_image);
 
             // upload the primary image
+            $primary_img = ImageHandler::upload_img($request->file('primary_img'), 'product', 'images');
             $request->request->add([
-                'primary_image' => ImageHandler::upload_img($request->file('primary_img'), 'product', 'images')
+                'primary_image' => $primary_img['public_id'],
+                'secure_url' => $primary_img['secure_url'],
             ]);
         }
 
@@ -196,7 +201,8 @@ class ProductController extends Controller
             foreach ($request->file('images') as $image) {
                 $newName = ImageHandler::upload_img($image, 'product', 'images');
                 $images[$i] = [
-                    'image_name' => $newName,
+                    'image_name' => $newName['public_id'],
+                    'secure_url' => $newName['secure_url'],
                     'product_id' => $product->id
                 ];
                 $i++;
@@ -215,11 +221,11 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        ImageHandler::delete_img($product->primary_image);
     }
 }

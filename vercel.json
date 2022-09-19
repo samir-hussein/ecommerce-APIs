@@ -5,10 +5,6 @@
     },
     "routes": [
         {
-            "src": "/(api)/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
@@ -16,9 +12,7 @@
     "env": {
         "APP_NAME": "Laravel Vercel",
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
         "APP_URL": "https://jumia-samir-hussein.vercel.app",
-
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
