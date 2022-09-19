@@ -49,6 +49,11 @@ return [
         'customer' => [
             'driver' => 'sanctum',
             'provider' => 'customers'
+        ],
+
+        'company' => [
+            'driver' => 'sanctum',
+            'provider' => 'companies'
         ]
     ],
 
@@ -83,6 +88,11 @@ return [
         'customers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Customer::class,
+        ],
+
+        'companies' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Company::class,
         ],
 
         // 'users' => [
