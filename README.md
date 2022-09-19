@@ -6,9 +6,6 @@
 
 -   [Company APIs](#Company-APIs)
 -   [Customer APIs](#Customer-APIs)
--   [Category APIs](#Category-APIs)
--   [Brand APIs](#Brand-APIs)
--   [Product APIs](#Product-APIs)
 
 ## **Company APIs**
 
