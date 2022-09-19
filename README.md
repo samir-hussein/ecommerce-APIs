@@ -38,7 +38,7 @@
 <b>Headers :</b>
 
     Accept : Application/json
-    Authorization : "Bearer {customer_token}"
+    Authorization : "Bearer {company_token}"
 
 <b>Parameters :</b>
 
