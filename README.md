@@ -26,7 +26,7 @@
 
 ### Company Account register
 
-#### test account has permission
+#### test account has permission (only admin account can create new account)
 
     email: meroosamir10@gmail.com
     password: 12345678
