@@ -26,6 +26,31 @@ class CompanyAccountController extends Controller
             ], 422);
         }
 
+        if ($request->has('role')) {
+            if (!$request->user()->isAdmin()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => "You don't have permission to change your role."
+                ], 401);
+            }
+
+            $user->update($request->only('role'));
+        }
+
+        if ($user->id != $request->user()->id) {
+            if ($request->has('role')) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'The role has been updated successfully.'
+                ]);
+            }
+
+            return response()->json([
+                'status' => 'error',
+                'message' => "You don't have permission."
+            ], 401);
+        }
+
         if ($request->has('img')) {
             if ($user->public_id) {
                 ImageHandler::delete_img($user->public_id);
@@ -52,15 +77,7 @@ class CompanyAccountController extends Controller
             ]);
         }
 
-        if ($request->user() == $user) {
-            $user->update($request->except('role'));
-        }
-
-        if ($request->has('role')) {
-            if ($request->user()->role == 'admin') {
-                $user->update($request->only('role'));
-            }
-        }
+        $user->update($request->except('role'));
 
         return response()->json([
             'status' => 'success',
@@ -68,18 +85,26 @@ class CompanyAccountController extends Controller
         ]);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param \App\Models\Company $user
+     * @return \Illuminate\Http\Response
+     */
     public function delete(Request $request, Company $user)
     {
-        if ($request->user()->role != 'admin' && $request->user() != $user) {
+        if (!$request->user()->isAdmin()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Not Allowed.'
+                'message' => "You don't have permission."
             ]);
         }
 
         if ($user->public_id) {
             ImageHandler::delete_img($user->public_id);
         }
+
+        $user->tokens()->delete();
 
         $user->delete();
 

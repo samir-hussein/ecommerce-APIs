@@ -32,14 +32,15 @@ Route::prefix('company')->controller(CompanyAuthController::class)->group(functi
 });
 
 // ---------------------- company account routes --------------------------
-Route::prefix('company/account')->middleware('auth:company')->controller(CompanyAccountController::class)->group(function () {
-    Route::put('{company}/update', 'update')->missing(function () {
+Route::prefix('company/account')->middleware(['auth:company', 'isAdmin'])->controller(CompanyAccountController::class)->group(function () {
+    Route::put('{user}/update', 'update')->missing(function () {
         return response()->json([
             'status' => 'error',
             'message' => 'Not Found!'
         ]);
     });
-    Route::delete('{company}/delete', 'delete')->missing(function () {
+
+    Route::delete('{user}/delete', 'delete')->missing(function () {
         return response()->json([
             'status' => 'error',
             'message' => 'Not Found!'

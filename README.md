@@ -74,6 +74,41 @@
     Accept : Application/json
     Authorization : "Bearer {company_token}"
 
+### Company Account Update Information
+
+#### (only admin account can change the role of any account)
+
+<b>PUT :</b>
+
+    /company/account/{account_id}/update
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+<b>Parameters :</b>
+
+    name (optional)
+    img (optional | mimes:jpeg,jpg,png,webp | max:10MB)
+    password (optional | min:8)
+    password_confirmation (required with password)
+    old_password (required with password)
+    role (optional)
+
+### Company Account Delete
+
+#### (only admin account can delete any account)
+
+<b>DELETE :</b>
+
+    /company/account/{account_id}/delete
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
 ## Customer Account APIs
 
 ### Customer Account login
