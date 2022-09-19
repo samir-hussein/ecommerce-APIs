@@ -26,6 +26,11 @@
 
 ### Company Account register
 
+#### test account
+
+    email: meroosamir10@gmail.com
+    password: 12345678
+
 <b>POST :</b>
 
     /company/register
