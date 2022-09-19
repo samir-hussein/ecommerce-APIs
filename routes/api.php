@@ -75,15 +75,3 @@ Route::apiResource('/product', ProductController::class)->missing(function () {
         'message' => 'Not Found!'
     ]);
 });
-
-Route::get('test', function () {
-    $data = [
-        'email' => 'mrcar1858@gmail.com'
-    ];
-    Mail::send([], $data, function ($message, $data) {
-        $message->to($data['email'], 'Tutorials Point')->subject('Laravel Basic Testing Mail');
-        $message->from('samirhussein274@gmail.com', 'Samir');
-        $message->setBody('Hi, welcome user!');
-    });
-    return "Basic Email Sent. Check your inbox.";
-});
