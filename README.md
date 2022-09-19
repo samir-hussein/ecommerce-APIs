@@ -2,6 +2,11 @@
 
     https://jumia-samir-hussein.vercel.app/apis
 
+## Company Admin Account
+
+    email: nziemann@example.net
+    password: 12345678
+
 ## Contents
 
 -   [Company Account APIs](#Company-Account-APIs)
@@ -26,10 +31,7 @@
 
 ### Company Account register
 
-#### test account has permission (only admin account can create new account)
-
-    email: nziemann@example.net
-    password: 12345678
+#### (only admin account can create new account)
 
 <b>POST :</b>
 
