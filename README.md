@@ -25,7 +25,6 @@
 <b>Parameters :</b>
 
     email (required)
-
     password (required)
 
 ### Seller register
