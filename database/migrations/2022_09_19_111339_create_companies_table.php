@@ -18,6 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('image')->default('https://res.cloudinary.com/dvcw17rg2/image/upload/v1663586318/images/profile_avatar_tkunee.png');
+            $table->string('public_id')->nullable();
             $table->string('password')->default('12345678');
             $table->string('role');
             $table->timestamp('email_verified_at')->nullable();

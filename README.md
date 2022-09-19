@@ -28,7 +28,7 @@
 
 #### test account has permission (only admin account can create new account)
 
-    email: meroosamir10@gmail.com
+    email: nziemann@example.net
     password: 12345678
 
 <b>POST :</b>

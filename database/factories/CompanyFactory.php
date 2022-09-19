@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class CompanyFactory extends Factory
 {
@@ -14,7 +15,11 @@ class CompanyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => now(),
+            'role' => $this->faker->randomElement(['admin', 'customer service', 'seller service'])
         ];
     }
 }
