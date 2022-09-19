@@ -4,10 +4,10 @@
 
 ## Contents
 
--   [Company APIs](#Company-APIs)
+-   [Company Account APIs](#Company-Account-APIs)
 -   [Customer APIs](#Customer-APIs)
 
-## **Company APIs**
+## **Company Account APIs**
 
 ### Company login
 
@@ -83,7 +83,6 @@
 <b>Parameters :</b>
 
     email (required)
-
     password (required)
 
 ### Customer register
@@ -99,13 +98,9 @@
 <b>Parameters :</b>
 
     name (required)
-
     email (required)
-
     phone (required)
-
     password (required | min:8)
-
     password_confirmation (required)
 
 ### Customer logout
@@ -117,5 +112,4 @@
 <b>Headers :</b>
 
     Accept : Application/json
-
     Authorization : "Bearer {customer_token}"
