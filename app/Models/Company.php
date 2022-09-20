@@ -40,4 +40,14 @@ class Company extends Authenticatable
     {
         return ($this->role == 'admin') ? true : false;
     }
+
+    public function isCustomerService()
+    {
+        return ($this->role == 'customer service') ? true : false;
+    }
+
+    public function isSellerService()
+    {
+        return ($this->role == 'seller service') ? true : false;
+    }
 }

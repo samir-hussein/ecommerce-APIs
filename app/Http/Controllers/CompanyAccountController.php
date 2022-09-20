@@ -11,12 +11,18 @@ class CompanyAccountController extends Controller
 {
     public function update(Request $request, Company $user)
     {
+        if ($request->has('role')) {
+            return response()->json([
+                'status' => 'error',
+                'message' => "You don't have permission."
+            ], 401);
+        }
+
         $validate = Validator::make($request->all(), [
             'name' => 'filled',
             'img' => 'mimes:jpeg,jpg,png,webp|max:10000',
             'password' => 'filled|confirmed',
             'old_password' => 'required_with:password|different:password',
-            'role' => 'filled|in:admin,seller service,customer service',
         ]);
 
         if ($validate->fails()) {
@@ -24,31 +30,6 @@ class CompanyAccountController extends Controller
                 'status' => 'error',
                 'message' => $validate->errors()
             ], 422);
-        }
-
-        if ($request->has('role')) {
-            if (!$request->user()->isAdmin()) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => "You don't have permission to change your role."
-                ], 401);
-            }
-
-            $user->update($request->only('role'));
-        }
-
-        if ($user->id != $request->user()->id) {
-            if ($request->has('role')) {
-                return response()->json([
-                    'status' => 'success',
-                    'message' => 'The role has been updated successfully.'
-                ]);
-            }
-
-            return response()->json([
-                'status' => 'error',
-                'message' => "You don't have permission."
-            ], 401);
         }
 
         if ($request->has('img')) {
@@ -93,13 +74,6 @@ class CompanyAccountController extends Controller
      */
     public function delete(Request $request, Company $user)
     {
-        if (!$request->user()->isAdmin()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => "You don't have permission."
-            ]);
-        }
-
         if ($user->public_id) {
             ImageHandler::delete_img($user->public_id);
         }
@@ -111,6 +85,27 @@ class CompanyAccountController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'The account has been deleted successfully.'
+        ]);
+    }
+
+    public function updateRole(Request $request, Company $user)
+    {
+        $validate = Validator::make($request->all(), [
+            'role' => 'required|in:admin,seller service,customer service',
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validate->errors()
+            ], 422);
+        }
+
+        $user->update($request->only('role'));
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'The role has been updated successfully.'
         ]);
     }
 }

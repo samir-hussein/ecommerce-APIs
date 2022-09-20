@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsAdminMiddleware
+class SellerService
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->user()->isAdmin() && $request->user()->id != $request->route('user')->id) {
+        if (!$request->user()->isAdmin() || !$request->user()->isSellerService()) {
             return response()->json([
                 'status' => 'error',
                 'message' => "You don't have permission."

@@ -109,8 +109,6 @@
 
 ### Company Account Update Information
 
-#### (only admin account can change the role of any account)
-
 <b>PUT :</b>
 
     /company/account/{account_id}/update
@@ -127,7 +125,23 @@
     password (optional | min:8)
     password_confirmation (required with password)
     old_password (required with password)
-    role (optional)
+
+### Company Account Update Role
+
+#### (only admin account can change the role of any account)
+
+<b>PUT :</b>
+
+    /company/account/{account_id}/update-role
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+<b>Parameters :</b>
+
+    role (required | [admin , customer service , seller service])
 
 ### Company Account Delete
 
