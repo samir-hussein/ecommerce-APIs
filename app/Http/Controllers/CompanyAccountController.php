@@ -14,7 +14,7 @@ class CompanyAccountController extends Controller
         if ($request->has('role')) {
             return response()->json([
                 'status' => 'error',
-                'message' => "You don't have permission."
+                'message' => "Can't update the role."
             ], 401);
         }
 
