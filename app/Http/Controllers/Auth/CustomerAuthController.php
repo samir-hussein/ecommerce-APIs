@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Response;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 class CustomerAuthController extends Controller
 {
@@ -81,5 +82,15 @@ class CustomerAuthController extends Controller
             'status' => 'success',
             'message' => 'Successfully logged out'
         ], 200);
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        return ForgotPasswordController::requestReset($request, 'customers');
+    }
+
+    public function resetPassword(Request $request)
+    {
+        return ForgotPasswordController::resetPassword($request, 'customers');
     }
 }

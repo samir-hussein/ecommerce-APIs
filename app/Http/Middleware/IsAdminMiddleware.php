@@ -19,7 +19,7 @@ class IsAdminMiddleware
         if (!$request->user()->isAdmin() && $request->user()->id != $request->route('user')->id) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Not Allowed.'
+                'message' => "You don't have permission."
             ]);
         }
 

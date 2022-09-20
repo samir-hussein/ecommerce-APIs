@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Mail\VerifyAccount;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Company\CompanyAccountResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -45,7 +46,7 @@ class CompanyAuthController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $user,
+            'data' => new CompanyAccountResource($user),
             'access_token' => $user->createToken("API TOKEN")->plainTextToken,
             'token_type' => 'bearer',
             'expires_in' => "120 minutes"
@@ -152,5 +153,15 @@ class CompanyAuthController extends Controller
             'status' => 'success',
             'message' => 'You can login now!'
         ]);
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        return ForgotPasswordController::requestReset($request, 'companies');
+    }
+
+    public function resetPassword(Request $request)
+    {
+        return ForgotPasswordController::resetPassword($request, 'companies');
     }
 }

@@ -26,9 +26,11 @@ use Illuminate\Support\Facades\Http;
 // ----------------------- company auth routes --------------------------
 Route::prefix('company')->controller(CompanyAuthController::class)->group(function () {
     Route::post('/register', 'register')->middleware('auth:company');
-    Route::post('/login', 'login');
     Route::post('/verify', 'verify');
+    Route::post('/login', 'login');
     Route::get('/logout', 'logout')->middleware('auth:company');
+    Route::post('/forgot-password', 'forgotPassword');
+    Route::post('/reset-password', 'resetPassword');
 });
 
 // ---------------------- company account routes --------------------------
@@ -60,6 +62,8 @@ Route::prefix('customer')->controller(CustomerAuthController::class)->group(func
     Route::post('/register', 'register');
     Route::post('/login', 'login');
     Route::get('/logout', 'logout')->middleware('auth:customer');
+    Route::post('/forgot-password', 'forgotPassword');
+    Route::post('/reset-password', 'resetPassword');
 });
 
 // ------------------------ category routes -------------------------------

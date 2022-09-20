@@ -76,6 +76,37 @@
     Accept : Application/json
     Authorization : "Bearer {company_token}"
 
+### Company Account Forgot Password
+
+<b>POST :</b>
+
+    /company/forgot-password
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Parameters :</b>
+
+    email (required)
+
+### Company Account Reset Password
+
+<b>POST :</b>
+
+    /company/reset-password
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Parameters :</b>
+
+    token (required)
+    email (required)
+    password (required | min:8)
+    password_confirmation (required)
+
 ### Company Account Update Information
 
 #### (only admin account can change the role of any account)
@@ -156,3 +187,34 @@
 
     Accept : Application/json
     Authorization : "Bearer {customer_token}"
+
+### Customer Account Forgot Password
+
+<b>POST :</b>
+
+    /customer/forgot-password
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Parameters :</b>
+
+    email (required)
+
+### Customer Account Reset Password
+
+<b>POST :</b>
+
+    /customer/reset-password
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Parameters :</b>
+
+    token (required)
+    email (required)
+    password (required | min:8)
+    password_confirmation (required)
