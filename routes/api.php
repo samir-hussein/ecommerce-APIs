@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Http;
 
 // ----------------------- company auth routes --------------------------
 Route::prefix('company')->controller(CompanyAuthController::class)->group(function () {
-    Route::post('/register', 'register')->middleware('auth:company');
+    Route::post('/register', 'register')->middleware(['auth:company', 'admin']);
     Route::post('/verify', 'verify');
     Route::post('/login', 'login');
     Route::get('/logout', 'logout')->middleware('auth:company');

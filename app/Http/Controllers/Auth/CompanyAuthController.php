@@ -55,13 +55,6 @@ class CompanyAuthController extends Controller
 
     public function register(Request $request)
     {
-        if ($request->user()->role != "admin") {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Not Allowed.'
-            ], 422);
-        }
-
         $validate = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email:filter|unique:companies,email',
