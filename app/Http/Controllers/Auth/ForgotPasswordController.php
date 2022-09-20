@@ -28,8 +28,8 @@ class ForgotPasswordController extends Controller
         }
 
         $expire = strtotime(date('Y-m-d H:i:s', strtotime("+20 minutes")));
-
-        $token = Hash::make("$request->email|$table");
+        $app_key = config('app.key');
+        $token = Hash::make("$request->email|$table|$app_key");
 
         $details = [
             'token' => $token,
@@ -73,7 +73,8 @@ class ForgotPasswordController extends Controller
             ], 422);
         }
 
-        $token = "$request->email|$table";
+        $app_key = config('app.key');
+        $token = "$request->email|$table|$app_key";
 
         if (!Hash::check($token, $request->token)) {
             return response()->json([
