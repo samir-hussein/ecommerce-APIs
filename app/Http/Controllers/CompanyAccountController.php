@@ -6,9 +6,44 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\Company\CompanyAccountResource;
+use App\Http\Resources\Company\CompanyAccountCollection;
 
 class CompanyAccountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('owner', [
+            'only' => [
+                'update'
+            ]
+        ]);
+
+        $this->middleware('admin', [
+            'except' => [
+                'update'
+            ]
+        ]);
+    }
+
+    public function index()
+    {
+        return new CompanyAccountCollection(Company::simplePaginate(10));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Company $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Company $user)
+    {
+        return response()->json([
+            'data' => new CompanyAccountResource($user)
+        ]);
+    }
+
     public function update(Request $request, Company $user)
     {
         if ($request->has('role')) {
@@ -72,7 +107,7 @@ class CompanyAccountController extends Controller
      * @param \App\Models\Company $user
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request, Company $user)
+    public function destroy(Company $user)
     {
         if ($user->public_id) {
             ImageHandler::delete_img($user->public_id);

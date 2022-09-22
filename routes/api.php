@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\CompanyAuthController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
@@ -10,7 +9,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\SellerAuthController;
 use App\Http\Controllers\Auth\CustomerAuthController;
 use App\Http\Controllers\CompanyAccountController;
-use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,28 +32,21 @@ Route::prefix('company')->controller(CompanyAuthController::class)->group(functi
 });
 
 // ---------------------- company account routes --------------------------
-Route::prefix('company/account')->middleware('auth:company')->controller(CompanyAccountController::class)->group(function () {
-    Route::put('{user}/update', 'update')->missing(function () {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Not Found!'
-        ]);
-    })->middleware('owner');
+Route::apiResource('company/account', CompanyAccountController::class)->middleware('auth:company')->except('store')->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ]);
+})->parameters([
+    'account' => 'user',
+]);
 
-    Route::put('{user}/update-role', 'updateRole')->missing(function () {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Not Found!'
-        ]);
-    })->middleware('admin');
-
-    Route::delete('{user}/delete', 'delete')->missing(function () {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Not Found!'
-        ]);
-    })->middleware('admin');
-});
+Route::put('company/account/{user}/update-role', [CompanyAccountController::class, 'updateRole'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ]);
+})->middleware(['auth:company', 'admin']);
 
 // ----------------------- seller auth routes ---------------------
 Route::prefix('seller')->controller(SellerAuthController::class)->group(function () {

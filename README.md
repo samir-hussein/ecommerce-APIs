@@ -111,7 +111,7 @@
 
 <b>PUT :</b>
 
-    /company/account/{account_id}/update
+    /company/account/{account_id}
 
 <b>Headers :</b>
 
@@ -143,13 +143,39 @@
 
     role (required | [admin , customer service , seller service])
 
+### Get All Company Accounts
+
+#### (only admin account has access)
+
+<b>GET :</b>
+
+    /company/account
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+### Get Specified Company Account Information
+
+#### (only admin account can get specified account information)
+
+<b>GET :</b>
+
+    /company/account/{account_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
 ### Company Account Delete
 
 #### (only admin account can delete any account)
 
 <b>DELETE :</b>
 
-    /company/account/{account_id}/delete
+    /company/account/{account_id}
 
 <b>Headers :</b>
 
