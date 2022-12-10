@@ -4,7 +4,7 @@
 
 ## Company Admin Account
 
-    email: nziemann@example.net
+    email: alfred29@example.org
     password: 12345678
 
 ## Contents
