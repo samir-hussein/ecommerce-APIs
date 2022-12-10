@@ -11,6 +11,7 @@
 
 -   [Company Account APIs](#Company-Account-APIs)
 -   [Customer Account APIs](#Customer-Account-APIs)
+-   [Seller Account APIs](#Seller-Account-APIs)
 
 ## **Company Account APIs**
 
@@ -24,7 +25,7 @@
 
     Accept : Application/json
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     email (required)
     password (required)
@@ -42,7 +43,7 @@
     Accept : Application/json
     Authorization : "Bearer {company_token}"
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     name (required)
     email (required)
@@ -58,7 +59,7 @@
 
     Accept : Application/json
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     token (required)
     email (required)
@@ -86,7 +87,7 @@
 
     Accept : Application/json
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     email (required)
 
@@ -100,7 +101,7 @@
 
     Accept : Application/json
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     token (required)
     email (required)
@@ -118,7 +119,7 @@
     Accept : Application/json
     Authorization : "Bearer {company_token}"
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     name (optional)
     img (optional | mimes:jpeg,jpg,png,webp | max:10MB)
@@ -139,7 +140,7 @@
     Accept : Application/json
     Authorization : "Bearer {company_token}"
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     role (required | [admin , customer service , seller service])
 
@@ -194,7 +195,7 @@
 
     Accept : Application/json
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     email (required)
     password (required)
@@ -209,7 +210,7 @@
 
     Accept : Application/json
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     name (required)
     email (required)
@@ -238,7 +239,7 @@
 
     Accept : Application/json
 
-<b>Parameters :</b>
+<b>Body :</b>
 
     email (required)
 
@@ -252,7 +253,84 @@
 
     Accept : Application/json
 
-<b>Parameters :</b>
+<b>Body :</b>
+
+    token (required)
+    email (required)
+    password (required | min:8)
+    password_confirmation (required)
+
+## Seller Account APIs
+
+### Seller Account login
+
+<b>POST :</b>
+
+    /seller/login
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Body :</b>
+
+    email (required)
+    password (required)
+
+### Seller Account register
+
+<b>POST :</b>
+
+    /seller/register
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Body :</b>
+
+    name (required)
+    email (required)
+    phone (required)
+    password (required | min:8)
+    password_confirmation (required)
+
+### Seller Account logout
+
+<b>GET :</b>
+
+    /seller/logout
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {seller_token}"
+
+### Seller Account Forgot Password
+
+<b>POST :</b>
+
+    /seller/forgot-password
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Body :</b>
+
+    email (required)
+
+### Seller Account Reset Password
+
+<b>POST :</b>
+
+    /seller/reset-password
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Body :</b>
 
     token (required)
     email (required)

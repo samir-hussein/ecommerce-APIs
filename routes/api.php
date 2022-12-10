@@ -53,6 +53,8 @@ Route::prefix('seller')->controller(SellerAuthController::class)->group(function
     Route::post('/register', 'register');
     Route::post('/login', 'login');
     Route::get('/logout', 'logout')->middleware('auth:seller');
+    Route::post('/forgot-password', 'forgotPassword');
+    Route::post('/reset-password', 'resetPassword');
 });
 
 // ----------------------- customer auth routes ---------------------

@@ -82,4 +82,14 @@ class SellerAuthController extends Controller
             'message' => 'Successfully logged out'
         ], 200);
     }
+
+    public function forgotPassword(Request $request)
+    {
+        return ForgotPasswordController::requestReset($request, 'sellers');
+    }
+
+    public function resetPassword(Request $request)
+    {
+        return ForgotPasswordController::resetPassword($request, 'sellers');
+    }
 }
