@@ -9,12 +9,12 @@
 
 ## Contents
 
--   [Company Account APIs](#Company-Account-APIs)
--   [Customer Account APIs](#Customer-Account-APIs)
--   [Seller Account APIs](#Seller-Account-APIs)
--   [Category APIs](#Category-APIs)
--   [Sub Category APIs](#Sub-Category-APIs)
--   [Brand APIs](#Brand-APIs)
+-   [Company Account End Points](#Company-Account-End-Points)
+-   [Customer Account End Points](#Customer-Account-End-Points)
+-   [Seller Account End Points](#Seller-Account-End-Points)
+-   [Category End Points](#Category-End-Points)
+-   [Sub Category End Points](#Sub-Category-End-Points)
+-   [Brand End Points](#Brand-End-Points)
 
 ### Get active user information using token
 
@@ -27,7 +27,7 @@
     Accept : Application/json
     Authorization : "Bearer {token}"
 
-## **Company Account APIs**
+## **Company Account End Points**
 
 ### Company Account login
 
@@ -197,7 +197,7 @@
     Accept : Application/json
     Authorization : "Bearer {company_token}"
 
-## Customer Account APIs
+## Customer Account End Points
 
 ### Customer Account login
 
@@ -274,7 +274,7 @@
     password (required | min:8)
     password_confirmation (required)
 
-## Seller Account APIs
+## Seller Account End Points
 
 ### Seller Account login
 
@@ -351,7 +351,7 @@
     password (required | min:8)
     password_confirmation (required)
 
-## Category APIs
+## Category End Points
 
 ### Store new category
 
@@ -403,7 +403,7 @@
 
     Accept : Application/json
 
-## Sub Category APIs
+## Sub Category End Points
 
 ### Store new sub category
 
@@ -456,7 +456,7 @@
 
     Accept : Application/json
 
-## Brand APIs
+## Brand End Points
 
 ### Store new brand
 
