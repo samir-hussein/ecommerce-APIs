@@ -1,4 +1,4 @@
-# <h1 style="text-align:center">eCommerce APIs</h1>
+# <h1 align="center">eCommerce APIs</h1>
 
 ## Base URL :
 
