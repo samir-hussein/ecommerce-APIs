@@ -15,6 +15,9 @@ use App\Http\Controllers\Product\ProductAttributeValuesController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\ProductGalleryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Models\Company;
+use App\Models\Customer;
+use App\Models\Seller;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +32,16 @@ use App\Http\Controllers\SubCategoryController;
 
 // ----------------------- auth user info -------------------------------
 Route::get('/active-user', function (Request $request) {
+    if ($request->user() instanceof Customer) {
+        $user_type = "customer";
+    } elseif ($request->user() instanceof Seller) {
+        $user_type = "seller";
+    } elseif ($request->user() instanceof Company) {
+        $user_type = "company";
+    }
+
     return response()->json([
+        'user_type' => $user_type,
         'data' => $request->user()
     ]);
 })->middleware('auth:sanctum');
