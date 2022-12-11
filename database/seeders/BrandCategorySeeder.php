@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BrandCategory;
 use Illuminate\Database\Seeder;
 
 class BrandCategorySeeder extends Seeder
@@ -13,6 +14,6 @@ class BrandCategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        BrandCategory::factory()->count(30)->create();
     }
 }
