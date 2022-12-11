@@ -12,6 +12,20 @@
 -   [Company Account APIs](#Company-Account-APIs)
 -   [Customer Account APIs](#Customer-Account-APIs)
 -   [Seller Account APIs](#Seller-Account-APIs)
+-   [Category APIs](#Category-APIs)
+-   [Sub Category APIs](#Sub-Category-APIs)
+-   [Brand APIs](#Brand-APIs)
+
+### Get active user information using token
+
+<b>GET :</b>
+
+    /active-user
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {token}"
 
 ## **Company Account APIs**
 
@@ -336,3 +350,197 @@
     email (required)
     password (required | min:8)
     password_confirmation (required)
+
+## Category APIs
+
+### Store new category
+
+#### (only company account can store new category)
+
+<b>POST :</b>
+
+    /category
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+<b>Body :</b>
+
+    name (required | unique)
+
+### Delete a category
+
+#### (only company account can delete a category)
+
+<b>DELETE :</b>
+
+    /category/{category_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+### Display all categories
+
+<b>GET :</b>
+
+    /category
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+### Display the specified category
+
+<b>GET :</b>
+
+    /category/{category_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+## Sub Category APIs
+
+### Store new sub category
+
+#### (only company account can store new sub category)
+
+<b>POST :</b>
+
+    /sub-category
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+<b>Body :</b>
+
+    name (required | unique)
+    category_id (required)
+
+### Delete a sub category
+
+#### (only company account can delete a sub category)
+
+<b>DELETE :</b>
+
+    /sub-category/{sub_category_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+### Display all sub categories
+
+<b>GET :</b>
+
+    /sub-category
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+### Display the specified sub category
+
+<b>GET :</b>
+
+    /sub-category/{sub_category_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+## Brand APIs
+
+### Store new brand
+
+#### (only company account can store new brand)
+
+<b>POST :</b>
+
+    /brand
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+<b>Body :</b>
+
+    name (required | unique)
+
+### Add new brand to category
+
+#### (only company account can add new brand to category)
+
+<b>POST :</b>
+
+    /brand/category
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+<b>Body :</b>
+
+    brand_id (required)
+    category_id (required)
+
+### Add new brand to sub category
+
+#### (only company account can add new brand to sub category)
+
+<b>POST :</b>
+
+    /brand/sub-category
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+<b>Body :</b>
+
+    brand_id (required)
+    category_id (required)
+    sub_category_id (required)
+
+### Delete a brand
+
+#### (only company account can delete a brand)
+
+<b>DELETE :</b>
+
+    /brand/{brand_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"
+
+### Display all brands
+
+<b>GET :</b>
+
+    /brand
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+### Display the specified brand
+
+<b>GET :</b>
+
+    /brand/{brand_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json

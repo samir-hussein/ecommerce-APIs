@@ -49,7 +49,7 @@ class CompanyAuthController extends Controller
             'data' => new CompanyAccountResource($user),
             'access_token' => $user->createToken("API TOKEN")->plainTextToken,
             'token_type' => 'bearer',
-            'expires_in' => "120 minutes"
+            'expires_in' => "30 days"
         ], 200);
     }
 

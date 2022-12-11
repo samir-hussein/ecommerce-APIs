@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CategoryResource;
-use App\Models\Category;
+use App\Http\Resources\SubCategoryDetailsResource;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     public function __construct()
     {
@@ -22,11 +23,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $subCategories = SubCategory::all();
 
-        if (count($categories) > 0) {
+        if (count($subCategories) > 0) {
             return response()->json([
-                'data' => $categories
+                'data' => $subCategories
             ]);
         } else {
             return response()->json([], Response::HTTP_NO_CONTENT);
@@ -42,7 +43,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(), [
-            'name' => 'required|unique:categories,name'
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|' . Rule::unique('sub_categories', 'name')->where('category_id', $request->category_id)
         ]);
 
         if ($validate->fails()) {
@@ -52,8 +54,9 @@ class CategoryController extends Controller
             ], 422);
         }
 
-        Category::create([
-            'name' => $request->name
+        SubCategory::create([
+            'name' => $request->name,
+            'category_id' => $request->category_id
         ]);
 
         return response()->json([
@@ -65,25 +68,25 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category $category
+     * @param  \App\Models\SubCategory $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(SubCategory $subCategory)
     {
         return response()->json([
-            'data' => new CategoryResource($category),
+            'data' => new SubCategoryDetailsResource($subCategory)
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category $category
+     * @param  \App\Models\SubCategory $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(SubCategory $subCategory)
     {
-        $category->delete();
+        $subCategory->delete();
 
         return response()->json([
             'status' => 'success',

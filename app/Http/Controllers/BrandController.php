@@ -4,18 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
 class BrandController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:seller', [
-            'only' => [
-                'store',
-                'destroy'
-            ]
-        ]);
+        $this->middleware('auth:company')->except(['index', 'show']);
     }
 
     /**
@@ -25,9 +22,15 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'data' => Brand::all()
-        ]);
+        $brands = Brand::all();
+
+        if (count($brands) > 0) {
+            return response()->json([
+                'data' => $brands
+            ]);
+        } else {
+            return response()->json([], Response::HTTP_NO_CONTENT);
+        }
     }
 
     /**
@@ -49,9 +52,7 @@ class BrandController extends Controller
             ], 422);
         }
 
-        Brand::create([
-            'name' => $request->name
-        ]);
+        Brand::create($validate->validated());
 
         return response()->json([
             'status' => 'success',
@@ -62,22 +63,29 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Brand $brand
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Brand $brand)
     {
-        //
+        return response()->json([
+            'data' => $brand
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Brand $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Recored has been deleted successfully.'
+        ]);
     }
 }

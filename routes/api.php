@@ -8,7 +8,10 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\SellerAuthController;
 use App\Http\Controllers\Auth\CustomerAuthController;
+use App\Http\Controllers\BrandCategoryController;
+use App\Http\Controllers\BrandSubCategoryController;
 use App\Http\Controllers\CompanyAccountController;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +23,13 @@ use App\Http\Controllers\CompanyAccountController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// ----------------------- auth user info -------------------------------
+Route::get('/active-user', function (Request $request) {
+    return response()->json([
+        'data' => $request->user()
+    ]);
+})->middleware('auth:sanctum');
 
 // ----------------------- company auth routes --------------------------
 Route::prefix('company')->controller(CompanyAuthController::class)->group(function () {
@@ -36,7 +46,7 @@ Route::apiResource('company/account', CompanyAccountController::class)->middlewa
     return response()->json([
         'status' => 'error',
         'message' => 'Not Found!'
-    ]);
+    ], 404);
 })->parameters([
     'account' => 'user',
 ]);
@@ -45,7 +55,7 @@ Route::put('company/account/{user}/update-role', [CompanyAccountController::clas
     return response()->json([
         'status' => 'error',
         'message' => 'Not Found!'
-    ]);
+    ], 404);
 })->middleware(['auth:company', 'admin']);
 
 // ----------------------- seller auth routes ---------------------
@@ -67,10 +77,42 @@ Route::prefix('customer')->controller(CustomerAuthController::class)->group(func
 });
 
 // ------------------------ category routes -------------------------------
-Route::apiResource('/category', CategoryController::class)->except('update');
+Route::apiResource('/category', CategoryController::class)->except('update')->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+});
+
+// ------------------------ sub category routes -------------------------------
+Route::apiResource('/sub-category', SubCategoryController::class)->except('update')->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+});
 
 // ------------------------ brand routes -------------------------------
-Route::apiResource('/brand', BrandController::class)->except('update');
+Route::apiResource('/brand', BrandController::class)->except('update')->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+});
+
+Route::apiResource('/brand/category', BrandCategoryController::class)->only(['store', 'destroy'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+})->middleware('auth:company');
+
+Route::apiResource('/brand/sub-category', BrandSubCategoryController::class)->only(['store', 'destroy'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+})->middleware('auth:company');
 
 // ------------------------ product routes ------------------------------
 Route::apiResource('/product', ProductController::class)->missing(function () {
