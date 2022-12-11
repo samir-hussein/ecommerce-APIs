@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SubCategory extends Model
 {
@@ -22,5 +23,10 @@ class SubCategory extends Model
     public function brands()
     {
         return $this->belongsToMany(Brand::class, 'brand_sub_categories');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

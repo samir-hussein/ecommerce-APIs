@@ -17,6 +17,7 @@
 -   [Category End Points](#Category-End-Points)
 -   [Sub Category End Points](#Sub-Category-End-Points)
 -   [Brand End Points](#Brand-End-Points)
+-   [Products End Points](#Products-End-Points)
 
 ### Get active user information using token
 
@@ -546,3 +547,209 @@
 <b>Headers :</b>
 
     Accept : Application/json
+
+## Products End Points
+
+### Store new Product
+
+#### (only seller account can add new product)
+
+<b>POST :</b>
+
+    /product
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {seller_token}"
+
+<b>Body :</b>
+
+    name (required)
+    img (required | mimes:png,jpg,jpeg,webp | max:10000)
+    gallery (optional | array | mimes:jpeg,jpg,png,webp | max:10000)
+    price (required | numeric)
+    description (required)
+    discount (optional | numeric | between:0,100) defualt = 0
+    stock (optional | numeric) defualt = 0
+    category_id (required)
+    sub_category_id (optional)
+    brand_id (optional)
+    seller_id (required)
+    attributes (optional | array)
+
+<b>Body Example</b>
+
+    {
+        "name": "pro1",
+        "img": main image,
+        "gallery": {
+            image1,
+            image2
+        },
+        "price": "50",
+        "description": "this is desc",
+        "category_id": "7",
+        "brand_id": "21",
+        "seller_id": "3",
+        "attributes": [
+            {
+                "attr_name": "attr 1",
+                "attr_val": [
+                    "val 1",
+                    "val 2"
+                ]
+            },
+            {
+                "attr_name": "attr 2",
+                "attr_val": [
+                    "val 1"
+                ]
+            }
+        ]
+    }
+
+### Update a Product
+
+#### (only seller account can update a product)
+
+<b>PUT :</b>
+
+    /product/{product_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {seller_token}"
+
+<b>Body :</b>
+
+#### (if sub_category_id or brand_id values don't represent in the body request, their values will be replaced by null.)
+
+    name (optional)
+    img (optional | mimes:png,jpg,jpeg,webp | max:10000)
+    gallery (optional | array | mimes:jpeg,jpg,png,webp | max:10000)
+    price (optional | numeric)
+    description (optional)
+    discount (optional | numeric | between:0,100) defualt = 0
+    stock (optional | numeric) defualt = 0
+    category_id (optional)
+    sub_category_id (optional)
+    brand_id (optional)
+    attributes (optional | array)
+
+<b>Body Example</b>
+
+    {
+        "name": "pro1",
+        "img": main image,
+        "gallery": {
+            image1,
+            image2
+        },
+        "price": "50",
+        "description": "this is desc",
+        "category_id": "7",
+        "brand_id": "21",
+        "seller_id": "3",
+        "attributes": [
+            {
+                "attr_name": "attr 1",
+                "attr_val": [
+                    "val 1",
+                    "val 2"
+                ]
+            },
+            {
+                "attr_name": "attr 2",
+                "attr_val": [
+                    "val 1"
+                ]
+            }
+        ]
+    }
+
+### Delete a Product
+
+#### (only seller account can delete a product)
+
+<b>DELETE :</b>
+
+    /product/{product_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {seller_token}"
+
+### Delete image from a product gallery
+
+#### (only seller account can delete)
+
+<b>DELETE :</b>
+
+    /product/{product_id}/gallery/{gallery_image_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {seller_token}"
+
+### Delete attribute from a product
+
+#### (only seller account can delete)
+
+<b>DELETE :</b>
+
+    /product/{product_id}/attribute/{product_attribute_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {seller_token}"
+
+### Delete attribute value from a product
+
+#### (only seller account can delete)
+
+<b>DELETE :</b>
+
+    /product/{product_id}/attribute/{product_attribute_id}/value/{product_attribute_value_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {seller_token}"
+
+### Display the specified Product
+
+<b>GET :</b>
+
+    /product/{product_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+### Display all Products
+
+<b>GET :</b>
+
+    /product
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+### Approve a Product
+
+#### (only company account [admin or seller service] can approve a product)
+
+<b>GET :</b>
+
+    /product/{product_id}/approve
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {company_token}"

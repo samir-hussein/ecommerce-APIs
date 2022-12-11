@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,29 +16,26 @@ class Product extends Model
      */
     protected $fillable = [
         'name',
-        'primary_image',
+        'img',
         'secure_url',
         'price',
         'description',
         'discount',
         'stock',
         'category_id',
+        'sub_category_id',
         'brand_id',
-        'seller_id'
+        'seller_id',
+        'approved'
     ];
 
-    public function images()
+    public function gallery()
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany(ProductGallery::class);
     }
 
-    public function specifications()
+    public function attributes()
     {
-        return $this->hasMany(ProductSpecifications::class);
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(ProductAttribute::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -69,7 +70,7 @@ class BrandController extends Controller
     public function show(Brand $brand)
     {
         return response()->json([
-            'data' => $brand
+            'data' => new BrandResource($brand)
         ]);
     }
 

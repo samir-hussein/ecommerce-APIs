@@ -4,13 +4,16 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\SellerAuthController;
 use App\Http\Controllers\Auth\CustomerAuthController;
 use App\Http\Controllers\BrandCategoryController;
 use App\Http\Controllers\BrandSubCategoryController;
 use App\Http\Controllers\CompanyAccountController;
+use App\Http\Controllers\Product\ProductAttributeController;
+use App\Http\Controllers\Product\ProductAttributeValuesController;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Product\ProductGalleryController;
 use App\Http\Controllers\SubCategoryController;
 
 /*
@@ -119,5 +122,33 @@ Route::apiResource('/product', ProductController::class)->missing(function () {
     return response()->json([
         'status' => 'error',
         'message' => 'Not Found!'
-    ]);
+    ], 404);
 });
+
+Route::get('/product/{product}/approve', [ProductController::class, 'approve'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+})->middleware(['auth:company', 'seller_service']);
+
+Route::delete('/product/{product}/gallery/{product_gallery}', [ProductGalleryController::class, 'destroy'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+})->middleware(['auth:seller', 'EnsureProductOwner']);
+
+Route::delete('/product/{product}/attribute/{product_attribute}', [ProductAttributeController::class, 'destroy'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+})->middleware(['auth:seller', 'EnsureProductOwner']);
+
+Route::delete('/product/{product}/attribute/{product_attribute}/value/{product_attribute_value}', [ProductAttributeValuesController::class, 'destroy'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+})->middleware(['auth:seller', 'EnsureProductOwner']);

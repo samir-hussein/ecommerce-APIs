@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product\ProductAttribute;
 use Illuminate\Database\Seeder;
 
-class ProductImageSeeder extends Seeder
+class ProductAttributeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +14,6 @@ class ProductImageSeeder extends Seeder
      */
     public function run()
     {
-        //
+        ProductAttribute::factory()->count(400)->create();
     }
 }

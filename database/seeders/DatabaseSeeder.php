@@ -23,7 +23,11 @@ class DatabaseSeeder extends Seeder
             // BrandSubCategorySeeder::class,
             // SellerSeeder::class,
             // CustomerSeeder::class,
-            // CompanySeeder::class
+            // CompanySeeder::class,
+            // ProductSeeder::class,
+            // ProductGallerySeeder::class,
+            // ProductAttributeSeeder::class,
+            // ProductAttributeValueSeeder::class,
         ]);
     }
 }

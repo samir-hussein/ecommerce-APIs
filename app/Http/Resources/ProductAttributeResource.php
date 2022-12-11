@@ -3,9 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\BasicProductResource;
 
-class BrandResource extends JsonResource
+class ProductAttributeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +15,9 @@ class BrandResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'brand_id' => $this->id,
-            'brand_name' => $this->name,
-            'products' => BasicProductResource::collection($this->products()->paginate(12))->response()->getData(true),
+            'attribute_id' => $this->id,
+            'attribute_name' => $this->attr_name,
+            'attribute_values' => ProductAttributeValueResource::collection($this->values)
         ];
     }
 }
