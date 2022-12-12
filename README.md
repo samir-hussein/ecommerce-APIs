@@ -18,6 +18,7 @@
 -   [Sub Category End Points](#Sub-Category-End-Points)
 -   [Brand End Points](#Brand-End-Points)
 -   [Products End Points](#Products-End-Points)
+-   [Reviews End Points](#Reviews-End-Points)
 
 ### Get active user information using token
 
@@ -753,3 +754,75 @@
 
     Accept : Application/json
     Authorization : "Bearer {company_token}"
+
+## Reviews End Points
+
+### Add new review
+
+#### (only customer account can add new review)
+
+<b>POST :</b>
+
+    /review
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+<b>Body :</b>
+
+    comment (optional)
+    rating (required | between: 0,5)
+    product_id (required)
+
+### Update a review
+
+#### (only customer account can update a review)
+
+<b>PUT :</b>
+
+    /review/{review_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+<b>Body :</b>
+
+    comment (optional)
+    rating (optional | between: 0,5)
+
+### Delete a review
+
+#### (only customer account can delete a review)
+
+<b>DELETE :</b>
+
+    /review/{review_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+### Display all reviews
+
+<b>GET :</b>
+
+    /review
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+### Display the specified review
+
+<b>GET :</b>
+
+    /review/{review_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json

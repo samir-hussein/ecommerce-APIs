@@ -22,7 +22,7 @@ class BasicProductResource extends JsonResource
             'discount' => $this->discount . "%",
             'stock' => ($this->stock > 0) ? "available" : "out of stock",
             'price_after_discount' => ($this->price - ($this->price * ($this->discount / 100))) . " EGP",
-            'rating' => "soon"
+            'rating' => round($this->reviews->sum('rating') / count($this->reviews)),
         ];
     }
 }

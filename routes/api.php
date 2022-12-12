@@ -14,6 +14,7 @@ use App\Http\Controllers\Product\ProductAttributeController;
 use App\Http\Controllers\Product\ProductAttributeValuesController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\ProductGalleryController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SubCategoryController;
 use App\Models\Company;
 use App\Models\Customer;
@@ -164,3 +165,11 @@ Route::delete('/product/{product}/attribute/{product_attribute}/value/{product_a
         'message' => 'Not Found!'
     ], 404);
 })->middleware(['auth:seller', 'EnsureProductOwner']);
+
+// ------------------------ product routes ------------------------------
+Route::apiResource('/review', ReviewController::class)->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+});
