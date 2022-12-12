@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\EnsureCartOwner;
-use App\Http\Requests\Cart\CartStoreRequest;
-use App\Http\Resources\CartResource;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use App\Http\Resources\CartResource;
+use App\Http\Middleware\EnsureCartOwner;
+use App\Http\Requests\Cart\CartStoreRequest;
+use App\Http\Requests\Cart\CartUpdateRequest;
 
 class CartController extends Controller
 {
@@ -14,7 +15,7 @@ class CartController extends Controller
     {
         $this->middleware('auth:customer')->only(['store', 'index']);
 
-        $this->middleware(['auth:customer', 'EnsureCartOwner'])->only('destroy');
+        $this->middleware(['auth:customer', 'EnsureCartOwner'])->only(['destroy', 'update']);
     }
 
     /**
@@ -60,6 +61,22 @@ class CartController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Models\Cart $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function update(CartUpdateRequest $request, Cart $cart)
+    {
+        $cart->update($request->validated());
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Recored has been updated successfully.'
+        ]);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Cart $cart
@@ -67,11 +84,7 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        if ($cart->amount > 1) {
-            $cart->decrement('amount', 1);
-        } else {
-            $cart->delete();
-        }
+        $cart->delete();
 
         return response()->json([
             'status' => 'success',

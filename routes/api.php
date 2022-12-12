@@ -176,7 +176,7 @@ Route::apiResource('/review', ReviewController::class)->missing(function () {
 });
 
 // ------------------------ cart routes ------------------------------
-Route::apiResource('/cart', CartController::class)->except(['update', 'show'])->missing(function () {
+Route::apiResource('/cart', CartController::class)->except('show')->missing(function () {
     return response()->json([
         'status' => 'error',
         'message' => 'Not Found!'

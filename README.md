@@ -847,6 +847,23 @@
 
     product_id (required)
 
+### Update a product amount in the cart
+
+#### (only customer account can update)
+
+<b>PUT :</b>
+
+    /cart/{item_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+<b>Body :</b>
+
+    amount (required | numeric | min:1)
+
 ### Delete a product from cart
 
 #### (only customer account can delete)
