@@ -20,6 +20,7 @@
 -   [Products End Points](#Products-End-Points)
 -   [Reviews End Points](#Reviews-End-Points)
 -   [Cart End Points](#Cart-End-Points)
+-   [Favorite End Points](#Favorite-End-Points)
 
 ### Get active user information using token
 
@@ -889,3 +890,35 @@
 
     Accept : Application/json
     Authorization : "Bearer {customer_token}"
+
+## Favorite End Points
+
+### Display a favorite list
+
+#### (only customer account)
+
+<b>GET :</b>
+
+    /favorite
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+### Add/remove a product to/from favorite list
+
+#### (only customer account)
+
+<b>POST :</b>
+
+    /favorite
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+<b>Body :</b>
+
+    product_id (required)

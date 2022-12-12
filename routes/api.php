@@ -11,6 +11,7 @@ use App\Http\Controllers\BrandCategoryController;
 use App\Http\Controllers\BrandSubCategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CompanyAccountController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Product\ProductAttributeController;
 use App\Http\Controllers\Product\ProductAttributeValuesController;
 use App\Http\Controllers\Product\ProductController;
@@ -182,3 +183,11 @@ Route::apiResource('/cart', CartController::class)->except('show')->missing(func
         'message' => 'Not Found!'
     ], 404);
 });
+
+// ------------------------ favorite routes ------------------------------
+Route::apiResource('/favorite', FavoriteController::class)->only(['index', 'store'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+})->middleware('auth:customer');
