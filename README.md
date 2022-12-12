@@ -19,6 +19,7 @@
 -   [Brand End Points](#Brand-End-Points)
 -   [Products End Points](#Products-End-Points)
 -   [Reviews End Points](#Reviews-End-Points)
+-   [Cart End Points](#Cart-End-Points)
 
 ### Get active user information using token
 
@@ -826,3 +827,48 @@
 <b>Headers :</b>
 
     Accept : Application/json
+
+## Cart End Points
+
+### Add a product to cart
+
+#### (only customer account can add)
+
+<b>POST :</b>
+
+    /cart
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+<b>Body :</b>
+
+    product_id (required)
+
+### Delete a product from cart
+
+#### (only customer account can delete)
+
+<b>DELETE :</b>
+
+    /cart/{item_id}
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+### Display a cart list
+
+#### (only customer account)
+
+<b>GET :</b>
+
+    /cart
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"

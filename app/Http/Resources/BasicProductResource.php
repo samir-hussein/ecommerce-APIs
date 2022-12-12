@@ -14,6 +14,9 @@ class BasicProductResource extends JsonResource
      */
     public function toArray($request)
     {
+        $no_reviews = count($this->reviews);
+        $no_reviews = ($no_reviews > 0) ? $no_reviews : 1;
+
         return [
             'product_id' => $this->id,
             'product_name' => $this->name,
@@ -22,7 +25,7 @@ class BasicProductResource extends JsonResource
             'discount' => $this->discount . "%",
             'stock' => ($this->stock > 0) ? "available" : "out of stock",
             'price_after_discount' => ($this->price - ($this->price * ($this->discount / 100))) . " EGP",
-            'rating' => round($this->reviews->sum('rating') / count($this->reviews)),
+            'rating' => round($this->reviews->sum('rating') / $no_reviews),
         ];
     }
 }

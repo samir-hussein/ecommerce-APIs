@@ -14,6 +14,9 @@ class ProductDetailsResource extends JsonResource
      */
     public function toArray($request)
     {
+        $no_reviews = count($this->reviews);
+        $no_reviews = ($no_reviews > 0) ? $no_reviews : 1;
+
         return [
             'product_id' => $this->id,
             'product_name' => $this->name,
@@ -25,7 +28,7 @@ class ProductDetailsResource extends JsonResource
             'price_after_discount' => ($this->price - ($this->price * ($this->discount / 100))) . " EGP",
             'gallery' => ProductGalleryResource::collection($this->gallery),
             'attributes' => ProductAttributeResource::collection($this->attributes),
-            'rating' => round($this->reviews->sum('rating') / count($this->reviews)),
+            'rating' => round($this->reviews->sum('rating') / $no_reviews),
             'reviews' => ReviewResource::collection($this->reviews()->paginate(5))->response()->getData(true)
         ];
     }

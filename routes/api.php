@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\SellerAuthController;
 use App\Http\Controllers\Auth\CustomerAuthController;
 use App\Http\Controllers\BrandCategoryController;
 use App\Http\Controllers\BrandSubCategoryController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CompanyAccountController;
 use App\Http\Controllers\Product\ProductAttributeController;
 use App\Http\Controllers\Product\ProductAttributeValuesController;
@@ -168,6 +169,14 @@ Route::delete('/product/{product}/attribute/{product_attribute}/value/{product_a
 
 // ------------------------ product routes ------------------------------
 Route::apiResource('/review', ReviewController::class)->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+});
+
+// ------------------------ cart routes ------------------------------
+Route::apiResource('/cart', CartController::class)->except(['update', 'show'])->missing(function () {
     return response()->json([
         'status' => 'error',
         'message' => 'Not Found!'

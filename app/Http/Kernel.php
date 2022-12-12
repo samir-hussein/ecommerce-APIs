@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'seller_service' => \App\Http\Middleware\SellerService::class,
         'EnsureProductOwner' => \App\Http\Middleware\EnsureProductOwner::class,
         'EnsureReviewOwner' => \App\Http\Middleware\EnsureReviewOwner::class,
+        'EnsureCartOwner' => \App\Http\Middleware\EnsureCartOwner::class,
     ];
 }
