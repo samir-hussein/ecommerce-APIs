@@ -17,6 +17,7 @@ use App\Http\Controllers\Product\ProductAttributeValuesController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\ProductGalleryController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubCategoryController;
 use App\Models\Company;
 use App\Models\Customer;
@@ -191,3 +192,6 @@ Route::apiResource('/favorite', FavoriteController::class)->only(['index', 'stor
         'message' => 'Not Found!'
     ], 404);
 })->middleware('auth:customer');
+
+// ----------------------- search route ----------------------------------
+Route::get('/search', [SearchController::class, 'index']);

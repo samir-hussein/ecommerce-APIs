@@ -21,6 +21,7 @@
 -   [Reviews End Points](#Reviews-End-Points)
 -   [Cart End Points](#Cart-End-Points)
 -   [Favorite End Points](#Favorite-End-Points)
+-   [Search End Point](#Search-End-Point)
 
 ### Get active user information using token
 
@@ -922,3 +923,17 @@
 <b>Body :</b>
 
     product_id (required)
+
+## Search End Point
+
+<b>GET :</b>
+
+    /search
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Body :</b>
+
+    key_word (required)
