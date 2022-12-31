@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Http\Controllers\Filters\FilterServiceProvider;
 use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +31,11 @@ class Product extends Model
         'approved'
     ];
 
+    public static function filter(array $filters)
+    {
+        return FilterServiceProvider::boot(self::query(), $filters);
+    }
+
     public function gallery()
     {
         return $this->hasMany(ProductGallery::class);
@@ -43,5 +49,17 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function rating()
+    {
+        $no_reviews = count($this->reviews);
+        $no_reviews = ($no_reviews > 0) ? $no_reviews : 1;
+        return round($this->reviews->sum('rating') / $no_reviews);
+    }
+
+    public function finalPrice()
+    {
+        return ($this->price - ($this->price * ($this->discount / 100)));
     }
 }

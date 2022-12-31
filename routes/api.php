@@ -12,6 +12,7 @@ use App\Http\Controllers\BrandSubCategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CompanyAccountController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\Product\ProductAttributeController;
 use App\Http\Controllers\Product\ProductAttributeValuesController;
 use App\Http\Controllers\Product\ProductController;
@@ -195,3 +196,11 @@ Route::apiResource('/favorite', FavoriteController::class)->only(['index', 'stor
 
 // ----------------------- search route ----------------------------------
 Route::get('/search', [SearchController::class, 'index']);
+
+// ----------------------- filter route ----------------------------------
+Route::get('/filter', [FilterController::class, 'index'])->missing(function () {
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Not Found!'
+    ], 404);
+});

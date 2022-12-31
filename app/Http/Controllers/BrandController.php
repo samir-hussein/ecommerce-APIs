@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BrandDetailsResource;
 use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class BrandController extends Controller
 
         if (count($brands) > 0) {
             return response()->json([
-                'data' => $brands
+                'data' => BrandResource::collection($brands)
             ]);
         } else {
             return response()->json([], Response::HTTP_NO_CONTENT);
@@ -70,7 +71,7 @@ class BrandController extends Controller
     public function show(Brand $brand)
     {
         return response()->json([
-            'data' => new BrandResource($brand)
+            'data' => new BrandDetailsResource($brand)
         ]);
     }
 

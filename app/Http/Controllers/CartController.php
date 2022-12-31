@@ -54,10 +54,7 @@ class CartController extends Controller
             Cart::create($validated);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Recored has been added successfully.'
-        ], 201);
+        return $this->index();
     }
 
     /**
@@ -70,10 +67,7 @@ class CartController extends Controller
     {
         $cart->update($request->validated());
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Recored has been updated successfully.'
-        ]);
+        return $this->index();
     }
 
     /**
@@ -86,20 +80,16 @@ class CartController extends Controller
     {
         $cart->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Recored has been deleted successfully.'
-        ]);
+        return $this->index();
     }
 
     public function totalCartPrice()
     {
-        $items = Cart::where('customer_id', auth()->id())->get();
+        $items = Cart::where('customer_id', auth()->id())->latest()->get();
         $total_price = 0;
 
         foreach ($items as $item) {
-            $price = ($item->product->price - ($item->product->price * ($item->product->discount / 100)));
-            $total_price += $price * $item->amount;
+            $total_price += $item->product->finalPrice() * $item->amount;
         }
 
         return [

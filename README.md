@@ -22,6 +22,7 @@
 -   [Cart End Points](#Cart-End-Points)
 -   [Favorite End Points](#Favorite-End-Points)
 -   [Search End Point](#Search-End-Point)
+-   [Filter End Point](#Filter-End-Point)
 
 ### Get active user information using token
 
@@ -934,6 +935,26 @@
 
     Accept : Application/json
 
-<b>Body :</b>
+<b>Parameters :</b>
 
     key_word (required)
+
+## Filter End Point
+
+<b>GET :</b>
+
+    /filter
+
+<b>Headers :</b>
+
+    Accept : Application/json
+
+<b>Parameters :</b>
+
+    category (required) // example 9
+    sub_category (optional) // example 12
+    brand (optional) // example 13
+    discount (optional | min:1 | max:99) // example 50
+    price (optional | array | size:2) // example [500 , 2000]
+    orderByPrice (optional) // high or low
+    rating (optional | between:0,5) // example 2

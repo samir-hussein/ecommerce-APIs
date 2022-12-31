@@ -53,7 +53,7 @@ class ProductController extends Controller
     public function index()
     {
         return response()->json(
-            BasicProductResource::collection(Product::where('approved', 'approved')->paginate(12))->response()->getData(true)
+            BasicProductResource::collection(Product::where('approved', 'approved')->latest()->paginate(12))->resource
         );
     }
 

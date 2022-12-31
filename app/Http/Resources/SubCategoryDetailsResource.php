@@ -19,7 +19,7 @@ class SubCategoryDetailsResource extends JsonResource
             'sub_category_name' => $this->name,
             'category_id' => $this->category_id,
             'brands' => BrandResource::collection($this->brands),
-            'products' => BasicProductResource::collection($this->products()->paginate(12))->response()->getData(true),
+            'products' => BasicProductResource::collection($this->products()->latest()->paginate(12))->response()->getData(true),
         ];
     }
 }
