@@ -54,7 +54,10 @@ class CartController extends Controller
             Cart::create($validated);
         }
 
-        return $this->index();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Recored has been added successfully.'
+        ], 201);
     }
 
     /**
