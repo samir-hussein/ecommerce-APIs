@@ -64,9 +64,6 @@ class FavoriteController extends Controller
     {
         $favorite->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Recored has been deleted successfully.'
-        ]);
+        return $this->index();
     }
 }
