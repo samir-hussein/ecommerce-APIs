@@ -51,10 +51,7 @@ class FavoriteController extends Controller
             'customer_id' => auth()->id()
         ]);
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Recored has been added successfully.'
-        ], 201);
+        return $this->index();
     }
 
     /**
