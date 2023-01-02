@@ -35,21 +35,28 @@ class ProductFactory extends Factory
         ];
 
         $sellers = Seller::all()->pluck('id');
-        $brands = Brand::all()->pluck('id');
-        $categories = Category::all()->pluck('id');
-        $subCategories = SubCategory::all()->pluck('id');
+        $categories = Category::all();
+        $index = random_int(0, count($categories) - 1);
+        $category = $categories[$index];
+        $category_id = $category->id;
+        $subCategories = $category->subCategories;
+        $index = random_int(0, count($subCategories) - 1);
+        $subCategory = $subCategories[$index];
+        $brands = $subCategory->brands->pluck('id');
+        $subCategory_id = $subCategory->id;
+
 
         return [
             'name' => $this->faker->text(15),
             'img' => 'image',
             'secure_url' => $this->faker->randomElement($img),
-            'price' => $this->faker->numberBetween(50, 60000),
+            'price' => $this->faker->numberBetween(50, 6000),
             'description' => $this->faker->text(200),
-            'discount' => $this->faker->numberBetween(0, 60),
+            'discount' => $this->faker->numberBetween(0, 40),
             'stock' => $this->faker->numberBetween(0, 200),
             'approved' => $this->faker->randomElement(['approved', 'pending']),
-            'category_id' => $this->faker->randomElement($categories),
-            'sub_category_id' => $this->faker->optional()->randomElement($subCategories),
+            'category_id' => "$category_id",
+            'sub_category_id' => $this->faker->randomElement([$subCategory_id, null]),
             'brand_id' => $this->faker->optional()->randomElement($brands),
             'seller_id' => $this->faker->randomElement($sellers),
         ];

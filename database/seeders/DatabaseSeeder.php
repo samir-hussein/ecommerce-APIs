@@ -22,13 +22,13 @@ class DatabaseSeeder extends Seeder
             // BrandCategorySeeder::class,
             // BrandSubCategorySeeder::class,
             // SellerSeeder::class,
-            CustomerSeeder::class,
+            // CustomerSeeder::class,
             // CompanySeeder::class,
             // ProductSeeder::class,
             // ProductGallerySeeder::class,
             // ProductAttributeSeeder::class,
             // ProductAttributeValueSeeder::class,
-            ReviewSeeder::class,
+            // ReviewSeeder::class,
         ]);
     }
 }

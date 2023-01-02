@@ -14,6 +14,6 @@ class BrandSubCategorySeeder extends Seeder
      */
     public function run()
     {
-        BrandSubCategory::factory()->count(30)->create();
+        BrandSubCategory::factory()->count(40)->create();
     }
 }

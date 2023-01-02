@@ -14,7 +14,7 @@ class PriceFilter implements Filter
     public function query(Builder $query): Builder
     {
         if (request('price')) {
-            return $query->whereBetween('price', request('price'));
+            return $query->where('price', '>=', request('price')[0])->where('price', '<=', request('price')[1]);
         }
     }
 }

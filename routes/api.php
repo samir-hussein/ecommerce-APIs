@@ -1,28 +1,28 @@
 <?php
 
-use App\Http\Controllers\Auth\CompanyAuthController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Auth\SellerAuthController;
-use App\Http\Controllers\Auth\CustomerAuthController;
-use App\Http\Controllers\BrandCategoryController;
-use App\Http\Controllers\BrandSubCategoryController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CompanyAccountController;
-use App\Http\Controllers\FavoriteController;
-use App\Http\Controllers\FilterController;
-use App\Http\Controllers\Product\ProductAttributeController;
-use App\Http\Controllers\Product\ProductAttributeValuesController;
-use App\Http\Controllers\Product\ProductController;
-use App\Http\Controllers\Product\ProductGalleryController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SubCategoryController;
+use App\Models\Seller;
 use App\Models\Company;
 use App\Models\Customer;
-use App\Models\Seller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\FilterController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\BrandCategoryController;
+use App\Http\Controllers\CompanyAccountController;
+use App\Http\Controllers\Auth\SellerAuthController;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Auth\CompanyAuthController;
+use App\Http\Controllers\BrandSubCategoryController;
+use App\Http\Controllers\Auth\CustomerAuthController;
+use App\Http\Controllers\Product\ProductGalleryController;
+use App\Http\Controllers\Product\ProductAttributeController;
+use App\Http\Controllers\Product\ProductAttributeValuesController;
 
 /*
 |--------------------------------------------------------------------------
