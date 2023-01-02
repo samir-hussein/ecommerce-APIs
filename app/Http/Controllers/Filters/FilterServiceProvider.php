@@ -14,7 +14,7 @@ class FilterServiceProvider
         'sub_category' => SubCategoryFilter::class,
         'brand' => BrandFilter::class,
         'rating' => RatingFilter::class,
-        'price' => PriceFilter::class,
+        'price_from' => PriceFilter::class,
         'orderByPrice' => OrderByPriceFilter::class,
         'discount' => DiscountFilter::class,
     ];
@@ -30,6 +30,11 @@ class FilterServiceProvider
                     $filterRating = true;
                     continue;
                 }
+
+                if ($filter == 'price_to') {
+                    continue;
+                }
+
                 $query = $obj->query($query);
             }
         }

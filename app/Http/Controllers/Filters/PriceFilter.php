@@ -13,8 +13,8 @@ class PriceFilter implements Filter
      */
     public function query(Builder $query): Builder
     {
-        if (request('price')) {
-            return $query->where('price', '>=', request('price')[0])->where('price', '<=', request('price')[1]);
+        if (request('price_from')) {
+            return $query->where('price', '>=', request('price_from'))->where('price', '<=', request('price_to'));
         }
     }
 }

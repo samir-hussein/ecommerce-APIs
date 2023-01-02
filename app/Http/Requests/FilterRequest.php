@@ -42,8 +42,8 @@ class FilterRequest extends FormRequest
                 ]
             ),
             'discount' => 'filled|numeric|min:1|max:99',
-            'price' => 'filled|array|size:2',
-            'price.*' => 'numeric|min:1',
+            'price_from' => 'filled|numeric',
+            'price_to' => 'filled|numeric|required_with:price_from',
             'orderByPrice' => 'filled|in:high,low'
         ];
     }

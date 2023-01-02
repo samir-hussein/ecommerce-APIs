@@ -955,6 +955,7 @@
     sub_category (optional) // example 12
     brand (optional) // example 13
     discount (optional | min:1 | max:99) // example 50
-    price (optional | array | size:2) // example [500 , 2000]
+    price_from (optional)
+    price_to (required with price_from)
     orderByPrice (optional) // high or low
     rating (optional | between:0,5) // example 2
