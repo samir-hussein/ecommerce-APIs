@@ -101,6 +101,13 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        if ($product->approved != 'approved') {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Product not found.'
+            ], 404);
+        }
+
         return response()->json([
             'data' => new ProductDetailsResource($product)
         ]);

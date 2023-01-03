@@ -18,7 +18,7 @@ class BrandDetailsResource extends JsonResource
         return [
             'brand_id' => $this->id,
             'brand_name' => $this->name,
-            'products' => BasicProductResource::collection($this->products()->latest()->paginate(12))->response()->getData(true),
+            'products' => BasicProductResource::collection($this->products()->where('approved', 'approved')->latest()->paginate(12))->response()->getData(true),
         ];
     }
 }
