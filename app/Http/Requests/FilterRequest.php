@@ -29,7 +29,7 @@ class FilterRequest extends FormRequest
         return [
             'category' => 'required|exists:categories,id|',
             'sub_category' => 'filled|' . Rule::exists('sub_categories', 'id')->where('category_id', request('category')),
-            'rating' => 'filled|numeric|between:0,5',
+            'rating' => 'filled|numeric|between:1,5',
             'brand' => Rule::when(
                 request()->has('sub_category'),
                 [
@@ -42,8 +42,8 @@ class FilterRequest extends FormRequest
                 ]
             ),
             'discount' => 'filled|numeric|min:1|max:99',
-            'price_from' => 'filled|numeric',
-            'price_to' => 'filled|numeric|required_with:price_from',
+            'price_from' => 'filled|numeric|min:1',
+            'price_to' => 'filled|numeric|required_with:price_from|min:1',
             'orderByPrice' => 'filled|in:high,low'
         ];
     }

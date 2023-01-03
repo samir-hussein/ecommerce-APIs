@@ -25,16 +25,11 @@ class FilterServiceProvider
 
         foreach ($filters as $filter) {
             if (in_array($filter, array_keys(self::$filters))) {
-                $obj = new self::$filters["$filter"];
                 if ($filter == 'rating') {
                     $filterRating = true;
                     continue;
                 }
-
-                if ($filter == 'price_to') {
-                    continue;
-                }
-
+                $obj = new self::$filters["$filter"];
                 $query = $obj->query($query);
             }
         }

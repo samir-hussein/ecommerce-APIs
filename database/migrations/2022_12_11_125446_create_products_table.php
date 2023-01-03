@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('img');
             $table->string('secure_url');
-            $table->string('price');
+            $table->float('price');
             $table->string('description');
             $table->string('discount')->default(0);
             $table->string('stock')->default(0);
