@@ -2,7 +2,7 @@
 
 ## Base URL :
 
-    https://jumia-samir-hussein.vercel.app/apis
+    http://jumia-clone.onlinewebshop.net/apis
 
 ## Company Admin Account
 

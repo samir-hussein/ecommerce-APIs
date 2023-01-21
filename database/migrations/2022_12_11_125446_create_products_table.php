@@ -18,9 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('img');
             $table->string('secure_url');
-            $table->float('price');
+            $table->float('price')->unsigned();
             $table->string('description');
-            $table->string('discount')->default(0);
+            $table->integer('discount')->default(0)->unsigned();
             $table->string('stock')->default(0);
             $table->string('approved')->default('pending');
             $table->bigInteger('category_id')->unsigned();
