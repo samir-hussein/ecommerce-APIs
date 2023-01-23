@@ -41,10 +41,11 @@ use App\Http\Controllers\Product\ProductAttributeValuesController;
 // ----------------------- auth user info -------------------------------
 Route::get('/active-user', function (Request $request) {
     $user = $request->user();
-
     if ($user instanceof Customer) {
         $user_type = "customer";
-        $user = collect($user)->merge(collect(new AddressResource($user->address)));
+        if ($user->address) {
+            $user = collect($user)->merge(collect(new AddressResource($user->address)));
+        }
     } elseif ($user instanceof Seller) {
         $user_type = "seller";
     } elseif ($user instanceof Company) {

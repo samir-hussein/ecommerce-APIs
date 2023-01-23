@@ -36,10 +36,13 @@ class CustomerAuthController extends Controller
             ], 401);
         }
 
+        if ($user->address) {
+            $user = collect($user)->merge(collect(new AddressResource($user->address)));
+        }
 
         return response()->json([
             'status' => 'success',
-            'data' => collect($user)->merge(collect(new AddressResource($user->address))),
+            'data' => $user,
             'access_token' => $user->createToken("API TOKEN")->plainTextToken,
             'token_type' => 'bearer',
             'expires_in' => "30 days"
