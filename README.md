@@ -23,6 +23,7 @@
 -   [Favorite End Points](#Favorite-End-Points)
 -   [Search End Point](#Search-End-Point)
 -   [Filter End Point](#Filter-End-Point)
+-   [Address End Point](#Address-End-Point)
 
 ### Get active user information using token
 
@@ -959,3 +960,34 @@
     price_to (required with price_from)
     orderByPrice (optional) // high or low
     rating (optional | between:0,5) // example 2
+
+## Address End Point
+
+### Add/Update customer address
+
+<b>POST :</b>
+
+    /address
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+<b>Body :</b>
+
+    country (optional)
+    state (optional)
+    city (optional)
+    address (optional)
+
+### Delete customer address
+
+<b>DELETE :</b>
+
+    /address
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
