@@ -22,6 +22,7 @@ use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Auth\CompanyAuthController;
 use App\Http\Controllers\BrandSubCategoryController;
 use App\Http\Controllers\Auth\CustomerAuthController;
+use App\Http\Controllers\Product\HomePageController;
 use App\Http\Controllers\Product\ProductGalleryController;
 use App\Http\Controllers\Product\ProductAttributeController;
 use App\Http\Controllers\Product\ProductAttributeValuesController;
@@ -212,6 +213,10 @@ Route::get('/filter', [FilterController::class, 'index'])->missing(function () {
 
 // ---------------------- Address routes ---------------------------
 Route::middleware('auth:customer')->controller(AddressController::class)->group(function () {
+    Route::get('/address', 'index');
     Route::post('/address', 'store');
     Route::delete('/address', 'destroy');
 });
+
+// ---------------------- products for home page -----------------------------------
+Route::get('/products/home-page', [HomePageController::class, 'index']);

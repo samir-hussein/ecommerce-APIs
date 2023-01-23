@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AddressResource;
 use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AddressController extends Controller
 {
+    public function index()
+    {
+        return response()->json([
+            'data' => new AddressResource(Address::where('customer_id', auth()->id())->first())
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,13 +46,13 @@ class AddressController extends Controller
             ], 422);
         }
 
-        Address::updateOrCreate([
+        $address = Address::updateOrCreate([
             'customer_id' => auth()->id()
         ], $validate);
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Recored has been added successfully.'
+            'data' => new AddressResource($address)
         ], 201);
     }
 

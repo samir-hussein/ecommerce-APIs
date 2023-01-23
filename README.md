@@ -24,6 +24,7 @@
 -   [Search End Point](#Search-End-Point)
 -   [Filter End Point](#Filter-End-Point)
 -   [Address End Point](#Address-End-Point)
+-   [Home Page Products End Point](#Home-Page-Products-End-Point)
 
 ### Get active user information using token
 
@@ -963,6 +964,17 @@
 
 ## Address End Point
 
+### Show customer address
+
+<b>GET :</b>
+
+    /address
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
 ### Add/Update customer address
 
 <b>POST :</b>
@@ -991,3 +1003,13 @@
 
     Accept : Application/json
     Authorization : "Bearer {customer_token}"
+
+## Home Page Products End Point
+
+<b>GET :</b>
+
+    /products/home-page
+
+<b>Headers :</b>
+
+    Accept : Application/json
