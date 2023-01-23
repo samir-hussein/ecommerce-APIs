@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             // ProductAttributeSeeder::class,
             // ProductAttributeValueSeeder::class,
             // ReviewSeeder::class,
+            AddressSeeder::class,
         ]);
     }
 }

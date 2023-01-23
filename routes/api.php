@@ -5,11 +5,13 @@ use App\Models\Company;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\AddressResource;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SubCategoryController;
@@ -37,17 +39,20 @@ use App\Http\Controllers\Product\ProductAttributeValuesController;
 
 // ----------------------- auth user info -------------------------------
 Route::get('/active-user', function (Request $request) {
-    if ($request->user() instanceof Customer) {
+    $user = $request->user();
+
+    if ($user instanceof Customer) {
         $user_type = "customer";
-    } elseif ($request->user() instanceof Seller) {
+        $user = collect($user)->merge(collect(new AddressResource($user->address)));
+    } elseif ($user instanceof Seller) {
         $user_type = "seller";
-    } elseif ($request->user() instanceof Company) {
+    } elseif ($user instanceof Company) {
         $user_type = "company";
     }
 
     return response()->json([
         'user_type' => $user_type,
-        'data' => $request->user()
+        'data' => $user
     ]);
 })->middleware('auth:sanctum');
 
@@ -203,4 +208,10 @@ Route::get('/filter', [FilterController::class, 'index'])->missing(function () {
         'status' => 'error',
         'message' => 'Not Found!'
     ], 404);
+});
+
+// ---------------------- Address routes ---------------------------
+Route::middleware('auth:customer')->controller(AddressController::class)->group(function () {
+    Route::post('/address', 'store');
+    Route::delete('/address', 'destroy');
 });

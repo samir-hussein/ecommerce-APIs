@@ -31,10 +31,16 @@ class Customer extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'address'
     ];
 
     public function favorite()
     {
         return $this->hasMany(Favorite::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
     }
 }

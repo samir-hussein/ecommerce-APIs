@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Resources\AddressResource;
 
 class CustomerAuthController extends Controller
 {
@@ -38,7 +39,7 @@ class CustomerAuthController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $user,
+            'data' => collect($user)->merge(collect(new AddressResource($user->address))),
             'access_token' => $user->createToken("API TOKEN")->plainTextToken,
             'token_type' => 'bearer',
             'expires_in' => "30 days"
