@@ -45,6 +45,13 @@ Route::get('/active-user', function (Request $request) {
         $user_type = "customer";
         if ($user->address) {
             $user = collect($user)->merge(collect(new AddressResource($user->address)));
+        } else {
+            $user = collect($user)->merge(collect([
+                'country' => null,
+                'state' => null,
+                'city' => null,
+                'address' => null,
+            ]));
         }
     } elseif ($user instanceof Seller) {
         $user_type = "seller";

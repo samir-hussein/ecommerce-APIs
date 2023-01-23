@@ -11,8 +11,21 @@ class AddressController extends Controller
 {
     public function index()
     {
+        $address = Address::where('customer_id', auth()->id())->first();
+
+        if ($address) {
+            return response()->json([
+                'data' => new AddressResource($address)
+            ]);
+        }
+
         return response()->json([
-            'data' => new AddressResource(Address::where('customer_id', auth()->id())->first())
+            'data' => [
+                'country' => null,
+                'state' => null,
+                'city' => null,
+                'address' => null,
+            ]
         ]);
     }
 
