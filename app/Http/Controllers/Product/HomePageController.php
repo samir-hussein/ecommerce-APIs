@@ -18,8 +18,14 @@ class HomePageController extends Controller
         $offers = $products->sortByDesc('discount')->take(10)->values();
         $trending = $products->sortByDesc('price')->take(10)->values();
         $new_arrival = $products->take(10);
-        $best_seller = $products->sortBy('price')->take(10)->values();
         $top_rated = collect($products)->sortByDesc('rating')->take(10)->values();
+        $best_seller = BasicProductResource::collection(Product::query()
+            ->join('order_products', 'order_products.product_id', '=', 'products.id')
+            ->selectRaw('products.*, SUM(order_products.quantity) AS quantity_sold')
+            ->groupBy(['products.id'])
+            ->orderByDesc('quantity_sold')
+            ->take(10)
+            ->get());
 
         return response()->json([
             "best_offers" => $offers,
