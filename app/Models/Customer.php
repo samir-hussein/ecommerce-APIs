@@ -31,7 +31,7 @@ class Customer extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'address'
+        'address',
     ];
 
     public function favorite()
@@ -42,5 +42,10 @@ class Customer extends Authenticatable
     public function address()
     {
         return $this->hasOne(Address::class);
+    }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
     }
 }

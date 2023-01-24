@@ -25,6 +25,7 @@
 -   [Filter End Point](#Filter-End-Point)
 -   [Address End Point](#Address-End-Point)
 -   [Home Page Products End Point](#Home-Page-Products-End-Point)
+-   [Checkout End Point](#Checkout-End-Point)
 
 ### Get active user information using token
 
@@ -1013,3 +1014,23 @@
 <b>Headers :</b>
 
     Accept : Application/json
+
+## Checkout End Point
+
+<b>POST :</b>
+
+    /checkout
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"
+
+<b>Body :</b>
+
+    payment_type (required) // cash or visa
+    country (required)
+    state (required)
+    city (required)
+    address (required)
+    phone (required)
