@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('total_price')->nullable();
             $table->string('payment_type');
             $table->string('payment_status')->default('pending');
+            $table->string('transaction_id')->nullable();
             $table->string('delivery')->default('pending');
             $table->bigInteger('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');

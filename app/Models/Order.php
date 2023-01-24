@@ -13,6 +13,7 @@ class Order extends Model
         'total_price',
         'payment_type',
         'payment_status',
+        'transaction_id',
         'delivery',
         'customer_id',
     ];

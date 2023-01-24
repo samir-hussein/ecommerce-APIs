@@ -36,6 +36,6 @@ class ProductQuantity
             ]));
         }
 
-        return round($total_price, 2);
+        return round($total_price);
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c61ff82cbf0142a401a48a8161e1595a",
+    "content-hash": "7f719129036500f02654c96ee1ea3118",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2863,6 +2863,44 @@
                 }
             ],
             "time": "2022-09-16T03:22:46+00:00"
+        },
+        {
+            "name": "samir-hussein/paymob",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/samir-hussein/paymob.git",
+                "reference": "63ee3d41186e00a4390e522d615f0099f3fbfffa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/samir-hussein/paymob/zipball/63ee3d41186e00a4390e522d615f0099f3fbfffa",
+                "reference": "63ee3d41186e00a4390e522d615f0099f3fbfffa",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PayMob\\": "paymob/laravel",
+                    "Paymob\\": "paymob"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samir Ebrahim Hussein",
+                    "email": "samirhussein274@gmail.com"
+                }
+            ],
+            "description": "paymob payment gateway",
+            "support": {
+                "issues": "https://github.com/samir-hussein/paymob/issues",
+                "source": "https://github.com/samir-hussein/paymob/tree/1.0"
+            },
+            "time": "2021-02-26T13:27:43+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

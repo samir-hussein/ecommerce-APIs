@@ -27,6 +27,7 @@ use App\Http\Controllers\Product\HomePageController;
 use App\Http\Controllers\Product\ProductGalleryController;
 use App\Http\Controllers\Product\ProductAttributeController;
 use App\Http\Controllers\Product\ProductAttributeValuesController;
+use PayMob\Facades\PayMob;
 
 /*
 |--------------------------------------------------------------------------
@@ -232,3 +233,5 @@ Route::get('/products/home-page', [HomePageController::class, 'index']);
 
 // --------------------- Checkout ---------------------------------------------------
 Route::post('/checkout', [CheckoutController::class, 'checkout'])->middleware('auth:customer');
+
+Route::post('/checkout/processed', [CheckoutController::class, 'processed']);
