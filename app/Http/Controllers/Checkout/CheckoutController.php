@@ -23,7 +23,7 @@ class CheckoutController extends Controller
             'status' => 'success',
             'data' => [
                 'order_id' => $order->id,
-                'total_price' => $total_price,
+                'total_price' => $total_price + 50,
                 'currency_type' => 'EGP',
             ]
         ]);
