@@ -1036,7 +1036,7 @@
     address (required)
     phone (required)
 
-## Customer Orders
+## Customer Orders End Point
 
 <b>GET :</b>
 
