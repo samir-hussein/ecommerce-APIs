@@ -17,7 +17,7 @@ class ProductQuantity
             throw new HttpResponseException(response()->json([
                 'state' => 'error',
                 'message' => 'There is no products in your cart.',
-            ]));
+            ], 404));
         }
 
         foreach ($products as $product) {
@@ -33,7 +33,7 @@ class ProductQuantity
                 'state' => 'error',
                 'message' => 'Products quantity unavailable.',
                 'products_quantity_unavailable' => $notEnough
-            ]));
+            ], 422));
         }
 
         return round($total_price);
