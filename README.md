@@ -26,6 +26,7 @@
 -   [Address End Point](#Address-End-Point)
 -   [Home Page Products End Point](#Home-Page-Products-End-Point)
 -   [Checkout End Point](#Checkout-End-Point)
+-   [Customer Orders End Point](#Customer-Orders-Point)
 
 ### Get active user information using token
 
@@ -1034,3 +1035,14 @@
     city (required)
     address (required)
     phone (required)
+
+## Customer Orders
+
+<b>GET :</b>
+
+    /order
+
+<b>Headers :</b>
+
+    Accept : Application/json
+    Authorization : "Bearer {customer_token}"

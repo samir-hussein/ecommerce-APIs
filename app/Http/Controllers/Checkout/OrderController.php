@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController
 {
+    public function index()
+    {
+        return response()->json([
+            'data' => auth()->user()->orders
+        ]);
+    }
+
     public static function create(Request $request, float $total_price)
     {
         $validated = Validator::make($request->all(), [

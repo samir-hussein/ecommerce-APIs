@@ -23,6 +23,7 @@ use App\Http\Controllers\Auth\CompanyAuthController;
 use App\Http\Controllers\BrandSubCategoryController;
 use App\Http\Controllers\Auth\CustomerAuthController;
 use App\Http\Controllers\Checkout\CheckoutController;
+use App\Http\Controllers\Checkout\OrderController;
 use App\Http\Controllers\Product\HomePageController;
 use App\Http\Controllers\Product\ProductGalleryController;
 use App\Http\Controllers\Product\ProductAttributeController;
@@ -235,3 +236,6 @@ Route::get('/products/home-page', [HomePageController::class, 'index']);
 Route::post('/checkout', [CheckoutController::class, 'checkout'])->middleware('auth:customer');
 
 Route::post('/checkout/processed', [CheckoutController::class, 'processed']);
+
+// ----------------------- Ger customer Orders ----------------------------------
+Route::get('/order', [OrderController::class, 'index'])->middleware('auth:customer');
