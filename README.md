@@ -26,7 +26,7 @@
 -   [Address End Point](#Address-End-Point)
 -   [Home Page Products End Point](#Home-Page-Products-End-Point)
 -   [Checkout End Point](#Checkout-End-Point)
--   [Customer Orders End Point](#Customer-Orders-Point)
+-   [Customer Orders End Point](#Customer-Orders-End-Point)
 
 ### Get active user information using token
 
